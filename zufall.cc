@@ -1,39 +1,24 @@
 #include <iostream>
-#include <iomanip>
-#include <cmath>
-using namespace std;
 
-int laenge(double zahl) {
-  double count;
-  count = 0;
-  while ((zahl/pow(10,count)) > 10)
-    count++;
-  return static_cast<int>(count);
-}
+int a = 5;
+int c = 3;
+int m = 16;
+static int prevIj;
+int N = 100;
+double zufall();
 
 int main() {
+	int ArN[N];
+	for (int i = 0; i < N; i++) {
+		ArN[i] = zufall();
+	}
+	for (unsigned int k = 0; k < N; ++k) {
+		std::cout << k << ":" << ArN[k] << std::endl;
+	}
+}
 
-  long double s;
-  double n;
-  long double pi;
-  long double backup;
-  int length;
-  s  = 1;
-  n  = 1;
-  pi = 3;
-
-  do {
-    cout << 3*pow(2,n);
-    length = laenge(3*pow(2,n));
-    for (int x=0;x<(9-length);x++)
-      cout << " ";
-    cout << setprecision(19) << pi << endl;
-    backup = pi;
-    s = sqrt(s*s/4+(1-sqrt(1-s*s/4))*(1-sqrt(1-s*s/4)));
-    pi = 3*pow(2,n)*s;
-    n++;
-  } while (backup != pi);
-
-  return 0;
-
+double zufall() {
+	int Ij = ((a * prevIj + c) % m);
+	prevIj = Ij;
+	return (Ij * 1.0) / m;
 }
